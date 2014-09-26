@@ -1,7 +1,23 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 int siz=0;
 int o=255;
 Square [] cubes;
- void setup()   
+ public void setup()   
  {     
  	size(500, 500);
  	background(0);
@@ -11,7 +27,7 @@ Square [] cubes;
  		cubes[a]=new Square();
  	}
  }   
- void draw()   
+ public void draw()   
  {    
  	
  	background(0);
@@ -24,7 +40,7 @@ Square [] cubes;
  class Square  
  {     
  	int x, y, length, width;
- 	color colore;
+ 	int colore;
  	Square()
  	{
  		x=(int)(Math.random()*500);
@@ -34,7 +50,7 @@ Square [] cubes;
  		colorMode(HSB);
  		colore=color((int)(Math.random()*30)+90, (int)(Math.random()*40)+170, (int)(Math.random()*20)+250);
  	}   
- 	void move()
+ 	public void move()
  	{
  		if(mousePressed==true)
  		{
@@ -71,12 +87,21 @@ Square [] cubes;
  			y=y+(int)(Math.random()*3)-1;
  		}
  	}
- 	void show()
+ 	public void show()
  	{
  		noFill();
- 		strokeWeight(0.5);
+ 		strokeWeight(0.5f);
  		colorMode(RGB);
  		stroke(colore);
  		rect(x, y, length, width);
  	}
  }    
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
